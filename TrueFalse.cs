@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Xml.Serialization;
 
@@ -22,9 +21,9 @@ namespace Belive
             _questions = new List<Question>();
         }
 
-        public void Add(string text, bool isTrue, string pathImg)
+        public void Add(string textQ, string textA, bool isTrue, string pathImgQ, string pathImgA)
         {
-            _questions.Add(new Question(text, isTrue, pathImg));
+            _questions.Add(new Question(textQ, textA,  isTrue, pathImgQ, pathImgA));
         }
 
         public void Remove(int index)

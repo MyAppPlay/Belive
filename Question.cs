@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 
 
 namespace Belive
@@ -7,14 +6,22 @@ namespace Belive
     [Serializable]
     public class Question
     {
-        private string _text;
+        private string _textQ;
+        private string _textA;
         private bool _isTrue;
-        private string _pathImage;
+        private string _pathImageQ;
+        private string _pathImageA;
 
-        public string Text
+
+        public string TextQuestion
         {
-            get => _text;
-            set => _text = value;
+            get => _textQ;
+            set => _textQ = value;
+        }
+        public string TextAnswer
+        {
+            get => _textA;
+            set => _textA = value;
         }
 
         public bool IsTrue
@@ -23,19 +30,27 @@ namespace Belive
             set => _isTrue = value;
         }
 
-        public string PathImage
+        public string PathImageQuestion
         {
-            get => _pathImage;
-            set => _pathImage = value;
+            get => _pathImageQ;
+            set => _pathImageQ = value;
+        }
+
+        public string PathImageAnswer
+        {
+            get => _pathImageA;
+            set => _pathImageA = value;
         }
 
         public Question() { }
 
-        public Question(string text, bool isTrue, string pathImage)
+        public Question(string textQ, string textA, bool isTrue, string pathImageQ, string pathImageA)
         {
-            Text = text;
+            TextQuestion = textQ;
+            TextQuestion = textA;
             IsTrue = isTrue;
-            PathImage = pathImage;
+            PathImageQuestion = pathImageQ;
+            PathImageAnswer = pathImageA;
         }
     }
 }
