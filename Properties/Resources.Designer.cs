@@ -63,6 +63,16 @@ namespace Belive.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap IconMain {
+            get {
+                object obj = ResourceManager.GetObject("IconMain", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Q1 {
             get {
                 object obj = ResourceManager.GetObject("Q1", resourceCulture);

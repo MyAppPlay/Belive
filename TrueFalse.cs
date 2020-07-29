@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Windows.Forms;
 using System.Xml.Serialization;
 
 
@@ -44,10 +46,10 @@ namespace Belive
 
         public void Load()
         {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Question>));
-            Stream stream = new FileStream(_fileName, FileMode.Open, FileAccess.Read);
-            _questions = (List<Question>)xmlSerializer.Deserialize(stream);
-            stream.Close();
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Question>));
+                Stream stream = new FileStream(_fileName, FileMode.Open, FileAccess.Read);
+                _questions = (List<Question>) xmlSerializer.Deserialize(stream);
+                stream.Close();
         }
 
         public int Count => _questions.Count;
