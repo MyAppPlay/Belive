@@ -8,24 +8,34 @@ namespace Belive
 {
     public partial class MainForm : Form
     {
+        private const string Rules =
+            "Если ответ правильный, начисляется одно очко. При неправильном ответе очко отнимается.";
         private TrueFalse _db;
         private string _pathSave = string.Empty;
-        private bool _isGameMode;
-        private string _path = "data.txt";
-        private bool _isCorrectValue = true;
-        private int _trueValue;
-        private int _falseValue;
-        private int _valueCountDb = 0;
+        private readonly string _path = "data.txt";
+        private int _valueCountDb;
+        private int _result;
 
         public MainForm()
         {
             InitializeComponent();
+            LoadDefaultParameters();
+        }
+
+        private void LoadDefaultParameters()
+        {
             Qlbl.Parent = ImageBoxQ;
             Qlbl.Dock = DockStyle.Fill;
             Albl.Parent = ImageBoxA;
             Albl.Dock = DockStyle.Fill;
             GamePanel.Visible = false;
             EditorPanel.Visible = false;
+            MainGameLbl.Parent = GamePictureBox;
+            ExitMainMenuBtn.Parent = GamePictureBox;
+            ContinueBtn.Parent = GamePictureBox;
+            TrueBtn.Parent = GamePictureBox;
+            FalseBtn.Parent = GamePictureBox;
+            ResultLbl.Parent = GamePictureBox;
         }
 
         private void Exit_Click(object sender, EventArgs e)
@@ -71,7 +81,6 @@ namespace Belive
             TrueFalseCheck.Checked = _db[(int)NumQuestion.Value - 1].IsTrue;
             ImageBoxQ.ImageLocation = _db[(int) NumQuestion.Value - 1].PathImageQuestion;
             ImageBoxA.ImageLocation = _db[(int)NumQuestion.Value - 1].PathImageAnswer;
-            _isCorrectValue = true;
         }
 
         private void AddBtn_Click(object sender, EventArgs e)
@@ -120,7 +129,7 @@ namespace Belive
             }
             catch
             {
-                MessageBox.Show("Базаданных не загружена");
+                MessageBox.Show(@"Базаданных не загружена");
             }
         }
 
@@ -156,13 +165,6 @@ namespace Belive
             return false;
         }
 
-        private void SwithMode_Click(object sender, EventArgs e)
-        {
-            EditorPanel.Visible = _isGameMode;
-            _isGameMode = !_isGameMode;
-
-        }
-
         private void ImgAnsBtn_Click(object sender, EventArgs e)
         {
             if (IsDataBaseNoCreate()) return;
@@ -185,6 +187,11 @@ namespace Belive
 
         private void PlayBtn_Click(object sender, EventArgs e)
         {
+            _valueCountDb = 0;
+            _result = 0;
+            MainGameLbl.Text = Rules;
+            ResultLbl.Text = $@"Счет: {_result}";
+            GamePictureBox.Image = null;
             GamePanel.Visible = true;
             MainMenuPanel.Visible = false;
             EditorPanel.Visible = false;
@@ -226,21 +233,21 @@ namespace Belive
             FalseBtn.Visible = true;
             ContinueBtn.Visible = false;
             GamePictureBox.ImageLocation = _db[_valueCountDb].PathImageQuestion;
+            MainGameLbl.Text = _db[_valueCountDb].TextQuestion;
         }
 
         private void TrueBtn_Click(object sender, EventArgs e)
         {
             GamePictureBox.ImageLocation = _db[_valueCountDb].PathImageAnswer;
-            if (_valueCountDb < _db.Count - 1)
-                _valueCountDb++;
-            TrueBtn.Visible = false;
-            FalseBtn.Visible = false;
-            ContinueBtn.Visible = true;
-        }
+            MainGameLbl.Text = _db[_valueCountDb].TextAnswer;
+            if (!_db[_valueCountDb].IsTrue)
+                _result--;
+            else
+            {
+                _result++;
+            }
+            ResultLbl.Text = $@"Счет: {_result}";
 
-        private void FalseBtn_Click(object sender, EventArgs e)
-        {
-            GamePictureBox.ImageLocation = _db[_valueCountDb].PathImageAnswer;
             if (_valueCountDb < _db.Count - 1)
                 _valueCountDb++;
             else
@@ -250,6 +257,48 @@ namespace Belive
             TrueBtn.Visible = false;
             FalseBtn.Visible = false;
             ContinueBtn.Visible = true;
+        }
+
+        private void FalseBtn_Click(object sender, EventArgs e)
+        {
+            GamePictureBox.ImageLocation = _db[_valueCountDb].PathImageAnswer;
+            MainGameLbl.Text = _db[_valueCountDb].TextAnswer;
+            if (_db[_valueCountDb].IsTrue)
+                _result--;
+            else
+            {
+                _result++;
+            }
+            ResultLbl.Text = $@"Счет: {_result}";
+
+            if (_valueCountDb < _db.Count - 1)
+                _valueCountDb++;
+            else
+            {
+                MessageBox.Show(@"Игра окончена");
+                MainMenuPanel.Visible = true;
+                GamePanel.Visible = false;
+            }
+            TrueBtn.Visible = false;
+            FalseBtn.Visible = false;
+            ContinueBtn.Visible = true;
+        }
+
+        private void Qlbl_Click(object sender, EventArgs e)
+        {
+            QuestionTextBox.Text = Qlbl.Text;
+        }
+
+        private void Albl_Click(object sender, EventArgs e)
+        {
+            QuestionTextBox.Text = Albl.Text;
+        }
+
+        private void TrueFalseCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            if (IsDataBaseNoCreate()) return;
+
+            _db[(int) NumQuestion.Value - 1].IsTrue = TrueFalseCheck.CheckState == CheckState.Checked;
         }
     }
 }

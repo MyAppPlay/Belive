@@ -43,7 +43,6 @@
             this.NumQuestion = new System.Windows.Forms.NumericUpDown();
             this.AddImgBtn = new System.Windows.Forms.Button();
             this.ImgAnsBtn = new System.Windows.Forms.Button();
-            this.SwithMode = new System.Windows.Forms.Button();
             this.QuestionTextBox = new System.Windows.Forms.TextBox();
             this.EditorPanel = new System.Windows.Forms.Panel();
             this.ReturnMenuBtn = new System.Windows.Forms.Button();
@@ -60,10 +59,9 @@
             this.MainGameLbl = new System.Windows.Forms.Label();
             this.ExitMainMenuBtn = new System.Windows.Forms.Button();
             this.ContinueBtn = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.ResultLbl = new System.Windows.Forms.Label();
             this.FalseBtn = new System.Windows.Forms.Button();
             this.TrueBtn = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.GamePictureBox = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumQuestion)).BeginInit();
@@ -78,12 +76,13 @@
             // TrueFalseCheck
             // 
             this.TrueFalseCheck.AutoSize = true;
-            this.TrueFalseCheck.Location = new System.Drawing.Point(706, 329);
+            this.TrueFalseCheck.Location = new System.Drawing.Point(641, 339);
             this.TrueFalseCheck.Name = "TrueFalseCheck";
-            this.TrueFalseCheck.Size = new System.Drawing.Size(64, 17);
+            this.TrueFalseCheck.Size = new System.Drawing.Size(111, 29);
             this.TrueFalseCheck.TabIndex = 0;
             this.TrueFalseCheck.Text = "Правда";
             this.TrueFalseCheck.UseVisualStyleBackColor = true;
+            this.TrueFalseCheck.CheckedChanged += new System.EventHandler(this.TrueFalseCheck_CheckedChanged);
             // 
             // menuStrip1
             // 
@@ -149,9 +148,9 @@
             // 
             // AddBtn
             // 
-            this.AddBtn.Location = new System.Drawing.Point(615, 297);
+            this.AddBtn.Location = new System.Drawing.Point(550, 297);
             this.AddBtn.Name = "AddBtn";
-            this.AddBtn.Size = new System.Drawing.Size(69, 23);
+            this.AddBtn.Size = new System.Drawing.Size(124, 36);
             this.AddBtn.TabIndex = 11;
             this.AddBtn.Text = "Добавить";
             this.AddBtn.UseVisualStyleBackColor = true;
@@ -160,9 +159,9 @@
             // DelBtn
             // 
             this.DelBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.DelBtn.Location = new System.Drawing.Point(615, 352);
+            this.DelBtn.Location = new System.Drawing.Point(550, 375);
             this.DelBtn.Name = "DelBtn";
-            this.DelBtn.Size = new System.Drawing.Size(69, 23);
+            this.DelBtn.Size = new System.Drawing.Size(124, 33);
             this.DelBtn.TabIndex = 9;
             this.DelBtn.Text = "Удалить";
             this.DelBtn.UseVisualStyleBackColor = true;
@@ -170,9 +169,10 @@
             // 
             // SaveBtnQ
             // 
-            this.SaveBtnQ.Location = new System.Drawing.Point(486, 309);
+            this.SaveBtnQ.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SaveBtnQ.Location = new System.Drawing.Point(400, 297);
             this.SaveBtnQ.Name = "SaveBtnQ";
-            this.SaveBtnQ.Size = new System.Drawing.Size(110, 23);
+            this.SaveBtnQ.Size = new System.Drawing.Size(135, 42);
             this.SaveBtnQ.TabIndex = 4;
             this.SaveBtnQ.Text = "Сохранить вопрос";
             this.SaveBtnQ.UseVisualStyleBackColor = true;
@@ -180,9 +180,9 @@
             // 
             // NumQuestion
             // 
-            this.NumQuestion.Location = new System.Drawing.Point(615, 326);
+            this.NumQuestion.Location = new System.Drawing.Point(550, 339);
             this.NumQuestion.Name = "NumQuestion";
-            this.NumQuestion.Size = new System.Drawing.Size(69, 20);
+            this.NumQuestion.Size = new System.Drawing.Size(69, 31);
             this.NumQuestion.TabIndex = 6;
             this.NumQuestion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.NumQuestion.ValueChanged += new System.EventHandler(this.NumQuestion_ValueChanged);
@@ -191,7 +191,7 @@
             // 
             this.AddImgBtn.Location = new System.Drawing.Point(53, 52);
             this.AddImgBtn.Name = "AddImgBtn";
-            this.AddImgBtn.Size = new System.Drawing.Size(112, 23);
+            this.AddImgBtn.Size = new System.Drawing.Size(124, 31);
             this.AddImgBtn.TabIndex = 8;
             this.AddImgBtn.Text = "Картинка вопроса";
             this.AddImgBtn.UseVisualStyleBackColor = true;
@@ -201,21 +201,11 @@
             // 
             this.ImgAnsBtn.Location = new System.Drawing.Point(615, 52);
             this.ImgAnsBtn.Name = "ImgAnsBtn";
-            this.ImgAnsBtn.Size = new System.Drawing.Size(112, 23);
+            this.ImgAnsBtn.Size = new System.Drawing.Size(125, 31);
             this.ImgAnsBtn.TabIndex = 10;
             this.ImgAnsBtn.Text = "Картинка ответа";
             this.ImgAnsBtn.UseVisualStyleBackColor = true;
             this.ImgAnsBtn.Click += new System.EventHandler(this.ImgAnsBtn_Click);
-            // 
-            // SwithMode
-            // 
-            this.SwithMode.Location = new System.Drawing.Point(303, 320);
-            this.SwithMode.Name = "SwithMode";
-            this.SwithMode.Size = new System.Drawing.Size(142, 41);
-            this.SwithMode.TabIndex = 18;
-            this.SwithMode.Text = "Переключатель";
-            this.SwithMode.UseVisualStyleBackColor = true;
-            this.SwithMode.Click += new System.EventHandler(this.SwithMode_Click);
             // 
             // QuestionTextBox
             // 
@@ -223,7 +213,7 @@
             this.QuestionTextBox.Location = new System.Drawing.Point(12, 297);
             this.QuestionTextBox.Multiline = true;
             this.QuestionTextBox.Name = "QuestionTextBox";
-            this.QuestionTextBox.Size = new System.Drawing.Size(455, 78);
+            this.QuestionTextBox.Size = new System.Drawing.Size(370, 102);
             this.QuestionTextBox.TabIndex = 19;
             // 
             // EditorPanel
@@ -246,7 +236,6 @@
             this.EditorPanel.Controls.Add(this.SaveBtnQ);
             this.EditorPanel.Controls.Add(this.TrueFalseCheck);
             this.EditorPanel.Controls.Add(this.NumQuestion);
-            this.EditorPanel.Controls.Add(this.SwithMode);
             this.EditorPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.EditorPanel.Location = new System.Drawing.Point(0, 0);
             this.EditorPanel.Name = "EditorPanel";
@@ -258,7 +247,7 @@
             // 
             this.ReturnMenuBtn.Location = new System.Drawing.Point(328, 27);
             this.ReturnMenuBtn.Name = "ReturnMenuBtn";
-            this.ReturnMenuBtn.Size = new System.Drawing.Size(110, 23);
+            this.ReturnMenuBtn.Size = new System.Drawing.Size(139, 68);
             this.ReturnMenuBtn.TabIndex = 27;
             this.ReturnMenuBtn.Text = "Выход в меню";
             this.ReturnMenuBtn.UseVisualStyleBackColor = true;
@@ -275,6 +264,7 @@
             this.Qlbl.TabIndex = 25;
             this.Qlbl.Text = "Текст вопроса";
             this.Qlbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Qlbl.Click += new System.EventHandler(this.Qlbl_Click);
             // 
             // ImageBoxQ
             // 
@@ -297,6 +287,7 @@
             this.Albl.TabIndex = 26;
             this.Albl.Text = "Текст ответа";
             this.Albl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Albl.Click += new System.EventHandler(this.Albl_Click);
             // 
             // ImageBoxA
             // 
@@ -311,9 +302,10 @@
             // 
             // SaveBtnA
             // 
-            this.SaveBtnA.Location = new System.Drawing.Point(486, 338);
+            this.SaveBtnA.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SaveBtnA.Location = new System.Drawing.Point(400, 352);
             this.SaveBtnA.Name = "SaveBtnA";
-            this.SaveBtnA.Size = new System.Drawing.Size(110, 23);
+            this.SaveBtnA.Size = new System.Drawing.Size(135, 45);
             this.SaveBtnA.TabIndex = 22;
             this.SaveBtnA.Text = "Сохранить ответ";
             this.SaveBtnA.UseVisualStyleBackColor = true;
@@ -380,10 +372,9 @@
             this.GamePanel.Controls.Add(this.MainGameLbl);
             this.GamePanel.Controls.Add(this.ExitMainMenuBtn);
             this.GamePanel.Controls.Add(this.ContinueBtn);
-            this.GamePanel.Controls.Add(this.label2);
+            this.GamePanel.Controls.Add(this.ResultLbl);
             this.GamePanel.Controls.Add(this.FalseBtn);
             this.GamePanel.Controls.Add(this.TrueBtn);
-            this.GamePanel.Controls.Add(this.label1);
             this.GamePanel.Controls.Add(this.GamePictureBox);
             this.GamePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GamePanel.Location = new System.Drawing.Point(0, 0);
@@ -394,90 +385,101 @@
             // 
             // MainGameLbl
             // 
-            this.MainGameLbl.AutoSize = true;
-            this.MainGameLbl.Location = new System.Drawing.Point(264, 164);
+            this.MainGameLbl.BackColor = System.Drawing.Color.Transparent;
+            this.MainGameLbl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MainGameLbl.Font = new System.Drawing.Font("Segoe UI Black", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.MainGameLbl.ForeColor = System.Drawing.Color.Cyan;
+            this.MainGameLbl.Location = new System.Drawing.Point(143, 98);
             this.MainGameLbl.Name = "MainGameLbl";
-            this.MainGameLbl.Size = new System.Drawing.Size(35, 13);
+            this.MainGameLbl.Size = new System.Drawing.Size(492, 263);
             this.MainGameLbl.TabIndex = 7;
-            this.MainGameLbl.Text = "label3";
+            this.MainGameLbl.Text = "Если ответ правильный, начисляется одно очко. При неправильном ответе очко отнима" +
+    "ется.";
+            this.MainGameLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ExitMainMenuBtn
             // 
-            this.ExitMainMenuBtn.Location = new System.Drawing.Point(12, 13);
+            this.ExitMainMenuBtn.BackColor = System.Drawing.Color.Transparent;
+            this.ExitMainMenuBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ExitMainMenuBtn.Location = new System.Drawing.Point(24, 12);
             this.ExitMainMenuBtn.Name = "ExitMainMenuBtn";
-            this.ExitMainMenuBtn.Size = new System.Drawing.Size(153, 33);
+            this.ExitMainMenuBtn.Size = new System.Drawing.Size(153, 63);
             this.ExitMainMenuBtn.TabIndex = 6;
             this.ExitMainMenuBtn.Text = "Выход в меню";
-            this.ExitMainMenuBtn.UseVisualStyleBackColor = true;
+            this.ExitMainMenuBtn.UseVisualStyleBackColor = false;
             this.ExitMainMenuBtn.Click += new System.EventHandler(this.ExitMainMenuBtn_Click);
             // 
             // ContinueBtn
             // 
-            this.ContinueBtn.Location = new System.Drawing.Point(615, 13);
+            this.ContinueBtn.BackColor = System.Drawing.Color.Transparent;
+            this.ContinueBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ContinueBtn.Location = new System.Drawing.Point(602, 12);
             this.ContinueBtn.Name = "ContinueBtn";
-            this.ContinueBtn.Size = new System.Drawing.Size(157, 33);
+            this.ContinueBtn.Size = new System.Drawing.Size(157, 71);
             this.ContinueBtn.TabIndex = 5;
             this.ContinueBtn.Text = " Продолжить";
-            this.ContinueBtn.UseVisualStyleBackColor = true;
+            this.ContinueBtn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.ContinueBtn.UseVisualStyleBackColor = false;
             this.ContinueBtn.Click += new System.EventHandler(this.ContinueBtn_Click);
             // 
-            // label2
+            // ResultLbl
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(379, 24);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(30, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Счет";
+            this.ResultLbl.AutoSize = true;
+            this.ResultLbl.BackColor = System.Drawing.Color.Transparent;
+            this.ResultLbl.Location = new System.Drawing.Point(379, 24);
+            this.ResultLbl.Name = "ResultLbl";
+            this.ResultLbl.Size = new System.Drawing.Size(64, 25);
+            this.ResultLbl.TabIndex = 4;
+            this.ResultLbl.Text = "Счет";
             // 
             // FalseBtn
             // 
             this.FalseBtn.AutoEllipsis = true;
-            this.FalseBtn.Location = new System.Drawing.Point(690, 309);
+            this.FalseBtn.BackColor = System.Drawing.Color.Transparent;
+            this.FalseBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.FalseBtn.Font = new System.Drawing.Font("Segoe UI Black", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FalseBtn.ForeColor = System.Drawing.Color.Red;
+            this.FalseBtn.Location = new System.Drawing.Point(641, 305);
             this.FalseBtn.Name = "FalseBtn";
-            this.FalseBtn.Size = new System.Drawing.Size(82, 88);
+            this.FalseBtn.Size = new System.Drawing.Size(118, 88);
             this.FalseBtn.TabIndex = 3;
             this.FalseBtn.Text = "Не верю";
-            this.FalseBtn.UseVisualStyleBackColor = true;
+            this.FalseBtn.UseVisualStyleBackColor = false;
             this.FalseBtn.Visible = false;
             this.FalseBtn.Click += new System.EventHandler(this.FalseBtn_Click);
             // 
             // TrueBtn
             // 
             this.TrueBtn.AutoEllipsis = true;
-            this.TrueBtn.Location = new System.Drawing.Point(12, 307);
+            this.TrueBtn.BackColor = System.Drawing.Color.Transparent;
+            this.TrueBtn.CausesValidation = false;
+            this.TrueBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.TrueBtn.Font = new System.Drawing.Font("Segoe UI Black", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TrueBtn.ForeColor = System.Drawing.Color.Lime;
+            this.TrueBtn.Location = new System.Drawing.Point(24, 304);
             this.TrueBtn.Name = "TrueBtn";
-            this.TrueBtn.Size = new System.Drawing.Size(85, 90);
+            this.TrueBtn.Size = new System.Drawing.Size(113, 90);
             this.TrueBtn.TabIndex = 2;
             this.TrueBtn.Text = "Верю";
-            this.TrueBtn.UseVisualStyleBackColor = true;
+            this.TrueBtn.UseVisualStyleBackColor = false;
             this.TrueBtn.Visible = false;
             this.TrueBtn.Click += new System.EventHandler(this.TrueBtn_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(359, 98);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Правила игры";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // GamePictureBox
             // 
             this.GamePictureBox.BackgroundImage = global::Belive.Properties.Resources.IconMain;
             this.GamePictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.GamePictureBox.Location = new System.Drawing.Point(119, 52);
+            this.GamePictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GamePictureBox.Location = new System.Drawing.Point(0, 0);
             this.GamePictureBox.Name = "GamePictureBox";
-            this.GamePictureBox.Size = new System.Drawing.Size(555, 356);
+            this.GamePictureBox.Size = new System.Drawing.Size(784, 411);
+            this.GamePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.GamePictureBox.TabIndex = 0;
             this.GamePictureBox.TabStop = false;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -488,6 +490,7 @@
             this.Controls.Add(this.MainMenuPanel);
             this.Controls.Add(this.EditorPanel);
             this.DoubleBuffered = true;
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -523,7 +526,6 @@
         private System.Windows.Forms.NumericUpDown NumQuestion;
         private System.Windows.Forms.Button AddImgBtn;
         private System.Windows.Forms.Button ImgAnsBtn;
-        private System.Windows.Forms.Button SwithMode;
         private System.Windows.Forms.TextBox QuestionTextBox;
         private System.Windows.Forms.Panel EditorPanel;
         private System.Windows.Forms.Button SaveBtnA;
@@ -539,10 +541,9 @@
         private System.Windows.Forms.Panel GamePanel;
         private System.Windows.Forms.Button ExitMainMenuBtn;
         private System.Windows.Forms.Button ContinueBtn;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label ResultLbl;
         private System.Windows.Forms.Button FalseBtn;
         private System.Windows.Forms.Button TrueBtn;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox GamePictureBox;
         private System.Windows.Forms.Button ReturnMenuBtn;
         private System.Windows.Forms.Label MainGameLbl;
